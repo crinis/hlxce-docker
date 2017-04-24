@@ -1,6 +1,6 @@
 # HLstatsX:CE
 
-An alpine docker image for running HLstatsX:CE in Docker containers.
+An alpine [Docker image](https://hub.docker.com/r/crinis/hlxce/) for running HLstatsX:CE in Docker containers.
 
 ## Getting Started
 These instructions will help you to get a containerized installation of HLstatsX 1.6.19 running. This includes a web interface, a database with phpmyadmin and a HLstatsX: CE daemon. I recommend to use fixed tags of my Docker images as the latest tag is subject to change.
