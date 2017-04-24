@@ -1,0 +1,10 @@
+#!/bin/sh
+
+sed -i "/DB_NAME/s/\"\([^\"]*\)\"/\"${DB_NAME}\"/2g" /var/www/html/config.php
+sed -i "/DB_USER/s/\"\([^\"]*\)\"/\"${DB_USERNAME}\"/2g" /var/www/html/config.php
+sed -i "/DB_PASS/s/\"\([^\"]*\)\"/\"${DB_PASSWORD}\"/2g" /var/www/html/config.php
+sed -i "/DB_ADDR/s/\"\([^\"]*\)\"/\"${DB_HOST}\"/2g" /var/www/html/config.php
+
+# mysql -h ${DB_ADDR} -u${DB_USER} -p${DB_PASS} ${DB_NAME} < /var/www/html/sql/install.sql
+
+exec "docker-php-entrypoint" $@
