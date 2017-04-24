@@ -1,0 +1,65 @@
+version: '2'
+volumes:
+  html:
+  mysql:
+services:
+  fpm:
+    image: crinis/web
+    environment:
+      DB_HOST: db
+      DB_USERNAME: hlxce
+      DB_PASSWORD: hlxce
+      DB_NAME: hlxce
+    links:
+    - db:db
+    - daemon:daemon
+    volumes:
+    # persist /var/www/html
+    - html:/var/www/html/
+  web:
+    image: webdevops/apache:alpine-3
+    environment:
+      WEB_PHP_SOCKET: fpm:9000
+      WEB_DOCUMENT_ROOT: /var/www/html/
+    ports:
+    # publishes the web interface on port 80, change as you like
+    - 80:80
+    links:
+    # links to the fpm container is required, because the fpm container actually interprets the php code
+    - fpm:fpm
+    volumes:
+    # has to be shared with the fpm container
+    - html:/var/www/html
+  daemon:
+    image: crinis/daemon
+    environment:
+      DB_HOST: db
+      DB_USERNAME: hlxce
+      DB_PASSWORD: hlxce
+      DB_NAME: hlxce
+    links:
+    - db:db
+    ports: 
+    # the perl daemon listens on port 27500 by default
+    - 27500:27500/udp
+  db:
+    image: mariadb:5
+    environment:
+      MYSQL_USER: hlxce
+      MYSQL_PASSWORD: hlxce
+      MYSQL_DATABASE: hlxce
+      MYSQL_ROOT_PASSWORD: hlxce
+    volumes:
+    # This is important as it persists your database, if you don't do that all data will be lost when a containers gets destroyed
+    - mysql:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: '3306'
+    links:
+    - db:db
+    ports:
+    # Change this port if you don't want it running at port 8080
+    - 8080:80
+    cpu_shares: 128
