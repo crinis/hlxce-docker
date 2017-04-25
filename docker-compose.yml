@@ -4,7 +4,7 @@ volumes:
   mysql:
 services:
   fpm:
-    image: crinis/web
+    image: crinis/hlxce
     environment:
       DB_HOST: db
       DB_USERNAME: hlxce
@@ -31,7 +31,7 @@ services:
     # has to be shared with the fpm container
     - html:/var/www/html
   daemon:
-    image: crinis/daemon
+    image: crinis/hlxce-daemon
     environment:
       DB_HOST: db
       DB_USERNAME: hlxce
