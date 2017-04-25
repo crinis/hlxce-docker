@@ -1,4 +1,4 @@
-FROM php:5-fpm-alpine
+FROM php:5-apache
 
 ENV HLXCE_VERSION=1_6_19 \
     DB_NAME=hlxce \
@@ -11,7 +11,7 @@ COPY docker-hlxce-entrypoint /usr/local/bin/
 WORKDIR /var/www/html/
 
 RUN set -x \
-        && apk add --no-cache mysql-client sed \
+        && apt-get update && apt-get -y install mysql-client sed \
         && docker-php-ext-install mysql \
         && chmod +x /usr/local/bin/docker-hlxce-entrypoint \
         && curl -L https://bitbucket.org/Maverick_of_UC/hlstatsx-community-edition/downloads/hlxce_${HLXCE_VERSION}.tar.gz -o hlxce.tar.gz \
@@ -22,4 +22,4 @@ RUN set -x \
 
 ENTRYPOINT ["docker-hlxce-entrypoint"]
 
-CMD ["php-fpm"]
+CMD ["apache2-foreground"]
