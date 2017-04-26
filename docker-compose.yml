@@ -13,7 +13,9 @@ services:
     links:
     - db:db
     - daemon:daemon
-    volumes:
+    ports: 
+    - 80:80
+    #volumes:
     # persist /var/www/html/ if you want to - this means manual upgrading next time
     # - html:/var/www/html/
   daemon:
