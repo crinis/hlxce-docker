@@ -21,7 +21,7 @@ RUN set -xe \
         && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
         && docker-php-ext-install mysql gd \
         && chmod +x /usr/local/bin/docker-hlxce-entrypoint \
-        && git clone https://crinis@bitbucket.org/Maverick_of_UC/hlstatsx-community-edition.git hlstatsx \
+        && git clone https://bitbucket.org/Maverick_of_UC/hlstatsx-community-edition.git hlstatsx \
         && mv hlstatsx/web/* . \
         && mv hlstatsx/sql/ . \
         && rm -R hlstatsx/ \
