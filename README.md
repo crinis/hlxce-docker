@@ -16,12 +16,12 @@ You need a working installation of Docker and Docker compose to follow the insta
 For a basic setup use my pre-configured [docker-compose.yml](docker-compose.yml). Make sure to change all passwords before running this in production.
 
 Run the following command in the same folder as the docker-compose.yml file to get the containers running. 
-
+If you run this container for the first time or want to update the database, make sure to add UPDATE_DB: 'true' to the environment variables of the "web" service. When you are done remove it and restart the service. This will also remove the updater/ and sql/ directories.
 ```
 docker-compose up
 ```
 Now you should have your HLstatsX: CE web interface running at port 80, the Perl daemon at port 27500 and an instance of phpMyAdmin at port 8080.
-Before you try to use the web interface at port 80 you should get the sql/install.sql file from the official [HLstatsX: CE repository](https://bitbucket.org/Maverick_of_UC/hlstatsx-community-edition/) and import it into the hlxce table of the database using phpMyAdmin at port 8080 of your server.
+
 
 Now add the following commands to the server.cfg file of your gameserver.
 ```

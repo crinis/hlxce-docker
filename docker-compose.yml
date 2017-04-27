@@ -10,6 +10,8 @@ services:
       DB_USERNAME: hlxce
       DB_PASSWORD: hlxce
       DB_NAME: hlxce
+      # this is only required to import or update the database
+      UPDATE_DB: 'true'
     links:
     - db:db
     - daemon:daemon
