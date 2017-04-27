@@ -12,7 +12,8 @@ COPY hlxce.ini /usr/local/etc/php/conf.d/
 WORKDIR /var/www/html/
 
 RUN set -x \
-        && apt-get update && apt-get -y install mysql-client sed php5-gd freetype* \
+        && apt-get update && apt-get -y install mysql-client sed libfreetype6-dev libjpeg62-turbo-dev \
+        && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
         && docker-php-ext-install mysql gd \
         && chmod +x /usr/local/bin/docker-hlxce-entrypoint \
         && curl -L https://bitbucket.org/Maverick_of_UC/hlstatsx-community-edition/downloads/hlxce_${HLXCE_VERSION}.tar.gz -o hlxce.tar.gz \
