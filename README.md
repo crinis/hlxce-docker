@@ -2,6 +2,8 @@
 
 A [Docker image](https://hub.docker.com/r/crinis/hlxce/) for running HLstatsX:CE in a Docker container.
 
+> I do not recommend using this image anymore as the original project HLstatsX:CE has not been updated for years. I have no influence on that. Consider this project deprecated.
+
 ## Getting Started
 These instructions will help you to get a containerized installation of HLstatsX 1.6.19 running. This includes a web interface, a database with phpmyadmin and a HLstatsX: CE daemon. I recommend to use fixed tags of my Docker images as the latest tag is subject to change.
 
